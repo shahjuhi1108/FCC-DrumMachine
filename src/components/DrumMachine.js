@@ -145,44 +145,33 @@ function DrumMachine() {
     const [volume, setVolume] = useState(30);
 
     const classes = useStyles()
+
+    function getPads(j) {
+        let values = []
+        for (var i = 0; i < 3; i++) {
+            values.push(<Grid item xs> 
+            <Pad power={power} volume={volume} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
+            </Grid>
+            )
+        }
+        return values
+    }
+
+    var pads = []
+    for (var j = 0; j < 3; j++) { 
+        pads.push(
+            <Grid container spacing={3}>
+                {getPads(j)}
+            </Grid>
+        )
+    }
+    
     return(
         <Container maxWidth="sm">
             <Card className={classes.root} variant="outlined">
                 <CardHeader
                     title="Drum Machine" style={{ textAlign: 'center' }}/>
-                <Grid container spacing={3}>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[0] : bankTwo[0]}></Pad>
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[1] : bankTwo[1]}></Pad>                            
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[2] : bankTwo[2]}></Pad>                            
-                    </Grid>
-                </Grid>
-                <Grid container spacing={3}>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[3] : bankTwo[3]}></Pad>                            
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[4] : bankTwo[4]}></Pad>                            
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[5] : bankTwo[5]}></Pad>                            
-                    </Grid>
-                </Grid>
-                <Grid container spacing={3}>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[6] : bankTwo[6]}></Pad>                            
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[7] : bankTwo[7]}></Pad>                            
-                    </Grid>
-                    <Grid item xs>
-                        <Pad power={power} volume={volume} bank={bank ? bankOne[8] : bankTwo[8]}></Pad>                            
-                    </Grid>
-                </Grid>
+                    {pads}
                 <Grid>
                 <FormGroup row>
                     <FormControlLabel
