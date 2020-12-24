@@ -145,252 +145,85 @@ function DrumMachine() {
     const [volume, setVolume] = useState(30);
 
     const classes = useStyles()
-    if (power) {
-        if (bank) {
-            return(
-                <Container maxWidth="sm">
-                    <Card className={classes.root} variant="outlined">
-                        <CardHeader
-                            title="Drum Machine" style={{ textAlign: 'center' }}/>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[0]}></Pad>
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[1]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[2]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[3]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[4]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[5]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[6]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[7]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankOne[8]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid>
-                        <FormGroup row>
-                            <FormControlLabel
-                            control={<Switch
-                                checked={power}
-                                onChange={() => setPower(!power)}
-                                color="secondary"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />}
-                            label="Power"
-                            />
-                            <div className={classes.slider}>
-                                <Typography id="continuous-slider" gutterBottom>
-                                    Volume={volume}
-                                </Typography>
-                                <Grid container spacing={2}>
-                                    <Grid item>
-                                        <VolumeDown />
-                                    </Grid>
-                                    <Grid item xs>
-                                        <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
-                                    </Grid>
-                                    <Grid item>
-                                        <VolumeUp />
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <FormControlLabel
-                            control={<Switch
-                                checked={bank}
-                                onChange={() => setBank(!bank)}
-                                color="primary"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />}
-                            label="Bank"
-                            />
-                        </FormGroup>
-                        </Grid>
-                    </Card>
-                </Container>
-            );
-        }
-        else {
-            return(
-                <Container maxWidth="sm">
-                    <Card className={classes.root} variant="outlined">
-                    <CardHeader
-                            title="Drum Machine" style={{ textAlign: 'center' }}/>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[0]}></Pad>
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[1]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[2]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[3]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[4]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[5]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[6]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[7]}></Pad>                            
-                            </Grid>
-                            <Grid item xs>
-                                <Pad power={power} volume={volume} bank={bankTwo[8]}></Pad>                            
-                            </Grid>
-                        </Grid>
-                        <Grid>
-                        <FormGroup row>
-                            <FormControlLabel
-                            control={<Switch
-                                checked={power}
-                                onChange={() => setPower(!power)}
-                                color="secondary"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />}
-                            label="Power"
-                            />
-                            <div className={classes.slider}>
-                                <Typography id="continuous-slider" gutterBottom>
-                                    Volume={volume}
-                                </Typography>
-                                <Grid container spacing={2}>
-                                    <Grid item>
-                                        <VolumeDown />
-                                    </Grid>
-                                    <Grid item xs>
-                                        <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
-                                    </Grid>
-                                    <Grid item>
-                                        <VolumeUp />
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <FormControlLabel
-                            control={<Switch
-                                checked={bank}
-                                onChange={() => setBank(!bank)}
-                                color="primary"
-                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />}
-                            label="Bank"
-                            />
-                        </FormGroup>
-                        </Grid>
-                    </Card>
-                </Container>
-            );
-        }
-    }
-    else {
-        return(
-            <Container maxWidth="sm">
-                <Card className={classes.root} variant="outlined">
+    return(
+        <Container maxWidth="sm">
+            <Card className={classes.root} variant="outlined">
                 <CardHeader
                     title="Drum Machine" style={{ textAlign: 'center' }}/>
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[0]}></Pad>
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[1]}></Pad>                            
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[2]}></Pad>                            
-                        </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[0] : bankTwo[0]}></Pad>
                     </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[3]}></Pad>                            
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[4]}></Pad>                            
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[5]}></Pad>                            
-                        </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[1] : bankTwo[1]}></Pad>                            
                     </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[6]}></Pad>                            
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[7]}></Pad>                            
-                        </Grid>
-                        <Grid item xs>
-                            <Pad power={power} volume={0} bank={bankOne[8]}></Pad>                            
-                        </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[2] : bankTwo[2]}></Pad>                            
                     </Grid>
-                    <Grid>
-                    <FormGroup row>
-                        <FormControlLabel
-                        control={<Switch
-                            checked={power}
-                            onChange={() => setPower(!power)}
-                            color="secondary"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />}
-                        label="Power"
-                        />
-                        <div className={classes.slider}>
-                            <Typography id="continuous-slider" gutterBottom>
-                                Volume={volume}
-                            </Typography>
-                            <Grid container spacing={2}>
-                                <Grid item>
-                                    <VolumeDown />
-                                </Grid>
-                                <Grid item xs>
-                                    <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
-                                </Grid>
-                                <Grid item>
-                                    <VolumeUp />
-                                </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[3] : bankTwo[3]}></Pad>                            
+                    </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[4] : bankTwo[4]}></Pad>                            
+                    </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[5] : bankTwo[5]}></Pad>                            
+                    </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[6] : bankTwo[6]}></Pad>                            
+                    </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[7] : bankTwo[7]}></Pad>                            
+                    </Grid>
+                    <Grid item xs>
+                        <Pad power={power} volume={volume} bank={bank ? bankOne[8] : bankTwo[8]}></Pad>                            
+                    </Grid>
+                </Grid>
+                <Grid>
+                <FormGroup row>
+                    <FormControlLabel
+                    control={<Switch
+                        checked={power}
+                        onChange={() => setPower(!power)}
+                        color="secondary"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />}
+                    label="Power"
+                    />
+                    <div className={classes.slider}>
+                        <Typography id="continuous-slider" gutterBottom>
+                            Volume={volume}
+                        </Typography>
+                        <Grid container spacing={2}>
+                            <Grid item>
+                                <VolumeDown />
                             </Grid>
-                        </div>
-                        <FormControlLabel
-                        control={<Switch
-                            checked={bank}
-                            onChange={() => setBank(!bank)}
-                            color="primary"
-                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                            />}
-                        label="Bank"
-                        />
-                    </FormGroup>
-                    </Grid>
-                </Card>
-            </Container>
-        );
-    }
-    
+                            <Grid item xs>
+                                <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
+                            </Grid>
+                            <Grid item>
+                                <VolumeUp />
+                            </Grid>
+                        </Grid>
+                    </div>
+                    <FormControlLabel
+                    control={<Switch
+                        checked={bank}
+                        onChange={() => setBank(!bank)}
+                        color="primary"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />}
+                    label="Bank"
+                    />
+                </FormGroup>
+                </Grid>
+            </Card>
+        </Container>
+    );
 }
 
 export default DrumMachine
