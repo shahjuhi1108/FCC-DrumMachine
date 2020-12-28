@@ -135,6 +135,7 @@ const useStyles = makeStyles((theme) => ({
     },
     slider: {
         width: 200,
+        padding: theme.spacing(2)
     }
   }));
 
@@ -184,8 +185,8 @@ function DrumMachine() {
                     label="Power"
                     />
                     <div className={classes.slider}>
-                        <Typography id="continuous-slider" gutterBottom>
-                            Volume={volume}
+                        <Typography style={{ textAlign: 'center' }} id="continuous-slider" gutterBottom>
+                            Volume: {volume}
                         </Typography>
                         <Grid container spacing={2}>
                             <Grid item>
