@@ -16,26 +16,29 @@ function Pad(props) {
 
     const [elevation, setElevation] = useState(3)
 
+
+
     function play() {
         if (props.power) {
             var audio = document.getElementById(getAudioId())
             props.onButtonClick(props.bank)
+            audio.volume = props.volume
             audio.play()
         }
     }
 
-    function onMouseDown() {
+    function handleMouseDown() {
         setElevation(0)
         play()
     }
 
     function getAudioId() {
-        return "uniqueID"+props.bank.keyTrigger
+        return props.bank.keyTrigger
     }
     
     return (
-        <div className='drum-pad' onMouseDown={() => onMouseDown()} onMouseUp={() => setElevation(3)}>
-            <audio src={props.bank.url} id={getAudioId()} volume={props.volume} className="clip"></audio>
+        <div className='drum-pad' id={"ID"+getAudioId()} onMouseDown={handleMouseDown} onMouseUp={() => setElevation(3)}>
+            <audio src={props.bank.url} id={getAudioId()} className="clip"></audio>
             <Paper className={classes.Pad} elevation={elevation} square>{props.bank.keyTrigger}</Paper>
         </div>
     )

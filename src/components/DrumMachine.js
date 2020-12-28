@@ -155,11 +155,20 @@ function DrumMachine() {
         document.getElementById("display").innerHTML = event.id
     }
 
+    function handlePower() {
+        setPower(!power)
+        document.getElementById("display").innerHTML = ""
+    }
+
+    function handleVolume(e, newVolume) {
+        setVolume(newVolume)
+    }
+
     function getPads(j) {
         let values = []
         for (var i = 0; i < 3; i++) {
             values.push(<Grid item xs> 
-            <Pad onButtonClick={handleClick} power={power} volume={volume} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
+            <Pad onButtonClick={handleClick} power={power} volume={volume/100} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
             </Grid>
             )
         }
@@ -176,7 +185,7 @@ function DrumMachine() {
     }
     
     return(
-        <Container maxWidth="sm">
+        <Container id="drum-machine" maxWidth="sm">
             <Card className={classes.root} variant="outlined">
                 <CardHeader
                     title="Drum Machine" style={{ textAlign: 'center' }}/>
@@ -187,7 +196,7 @@ function DrumMachine() {
                         <FormControlLabel
                         control={<Switch
                             checked={power}
-                            onChange={() => setPower(!power)}
+                            onChange={handlePower}
                             color="secondary"
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                             />}
@@ -204,7 +213,7 @@ function DrumMachine() {
                                     <VolumeDown />
                                 </Grid>
                                 <Grid item xs>
-                                    <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
+                                    <Slider value={volume} onChange={handleVolume} aria-labelledby="continuous-slider" />
                                 </Grid>
                                 <Grid item>
                                     <VolumeUp />
