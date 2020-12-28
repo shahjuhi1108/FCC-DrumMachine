@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Slider from '@material-ui/core/Slider';
 import VolumeDown from '@material-ui/icons/VolumeDown';
@@ -136,6 +135,11 @@ const useStyles = makeStyles((theme) => ({
     slider: {
         width: 200,
         padding: theme.spacing(2)
+    },
+    displayId: {
+        backgroundColor: '#DCDCDC',
+        padding: theme.spacing(2),
+        height: '3vw'
     }
   }));
 
@@ -147,11 +151,15 @@ function DrumMachine() {
 
     const classes = useStyles()
 
+    function handleClick(event) {
+        document.getElementById("display").innerHTML = event.id
+    }
+
     function getPads(j) {
         let values = []
         for (var i = 0; i < 3; i++) {
             values.push(<Grid item xs> 
-            <Pad power={power} volume={volume} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
+            <Pad onButtonClick={handleClick} power={power} volume={volume} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
             </Grid>
             )
         }
@@ -174,7 +182,52 @@ function DrumMachine() {
                     title="Drum Machine" style={{ textAlign: 'center' }}/>
                     {pads}
                 <Grid>
-                <FormGroup row>
+                <Grid container spacing={2}>
+                    <Grid item>
+                        <FormControlLabel
+                        control={<Switch
+                            checked={power}
+                            onChange={() => setPower(!power)}
+                            color="secondary"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />}
+                        label="Power"
+                        />
+                    </Grid>
+                    <Grid item>
+                        <div className={classes.slider}>
+                            <Typography style={{ textAlign: 'center' }} id="continuous-slider" gutterBottom>
+                                Volume: {volume}
+                            </Typography>
+                            <Grid container spacing={2}>
+                                <Grid item>
+                                    <VolumeDown />
+                                </Grid>
+                                <Grid item xs>
+                                    <Slider value={volume} onChange={(event, newValue) => setVolume(newValue)} aria-labelledby="continuous-slider" />
+                                </Grid>
+                                <Grid item>
+                                    <VolumeUp />
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <FormControlLabel
+                        control={<Switch
+                            checked={bank}
+                            onChange={() => setBank(!bank)}
+                            color="primary"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />}
+                        label="Bank"
+                        />
+                    </Grid>
+                </Grid>
+                <Card variant="outlined" className={classes.displayId}>
+                    <p id="display" style={{ textAlign: 'center' }}></p>
+                </Card>
+                {/* <FormGroup row>
                     <FormControlLabel
                     control={<Switch
                         checked={power}
@@ -209,7 +262,7 @@ function DrumMachine() {
                         />}
                     label="Bank"
                     />
-                </FormGroup>
+                </FormGroup> */}
                 </Grid>
             </Card>
         </Container>

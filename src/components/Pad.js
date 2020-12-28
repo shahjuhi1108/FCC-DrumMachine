@@ -19,6 +19,7 @@ function Pad(props) {
     function play() {
         if (props.power) {
             var audio = document.getElementById(getAudioId())
+            props.onButtonClick(props.bank)
             audio.play()
         }
     }
