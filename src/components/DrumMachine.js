@@ -167,7 +167,7 @@ function DrumMachine() {
     function getPads(j) {
         let values = []
         for (var i = 0; i < 3; i++) {
-            values.push(<Grid item xs> 
+            values.push(<Grid key={i} item xs> 
             <Pad onButtonClick={handleClick} power={power} volume={volume/100} bank={bank ? bankOne[j*3+i] : bankTwo[j*3+i]}></Pad>
             </Grid>
             )
@@ -178,7 +178,7 @@ function DrumMachine() {
     var pads = []
     for (var j = 0; j < 3; j++) { 
         pads.push(
-            <Grid container spacing={3}>
+            <Grid key={j}container spacing={3}>
                 {getPads(j)}
             </Grid>
         )
